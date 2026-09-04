@@ -1,0 +1,21 @@
+# 二进制
+subac/subac
+cda/cda
+tricount/tricount_baseline
+tricount/tricount_gt
+contract/prog
+gt_encode/Graphbit0
+test/verify_global_degree
+test/bench_path_query
+
+# 运行产物
+logs_*/
+data/output_*/
+data/gtbin/
+*.log
+*.tsv
+*.o
+
+# 编辑器
+.idea/
+.vscode/
