@@ -10,10 +10,13 @@
 #
 # Usage:
 #   ./run_tricount.sh
-#   DATASETS_OVERRIDE="BK LJ" ./run_tricount.sh
+#   DATASETS_OVERRIDE="BK LJ" ./run_tricount.sh [trials]      # trials: repetitions, default 5
 #   OFFLINE=1 ./run_tricount.sh       # additionally run trioffline standalone to verify non-3-outside
 # ============================================================
 cd "$(dirname "$0")" || exit 1
+
+# 1st arg = repetitions for the timing loop of triac_gt (default 5)
+TRIALS="${1:-5}"
 
 [ -n "$DATASETS_OVERRIDE" ] && DATASETS=($DATASETS_OVERRIDE) || DATASETS=(
     "BK"
@@ -31,7 +34,7 @@ for dataset in "${DATASETS[@]}"; do
     LOG_FILE="${LOG_DIR}/gt_${dataset}.log"
 
     # ---- 3-outside triangles (triac_gt) ----
-    ./triac_gt "$dataset" > "$LOG_FILE" 2>&1
+    ./triac_gt "$dataset" "$TRIALS" > "$LOG_FILE" 2>&1
     tri3out=$(grep -oP 'triangleCount:\s*\K[0-9]+' "$LOG_FILE")
     echo "  3-outside (triac_gt):   $tri3out"
 

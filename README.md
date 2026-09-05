@@ -30,8 +30,7 @@ cd triac     && DATASETS_OVERRIDE="BK" ./run_tricount.sh
 ```
 
 - **Input data**: place each raw graph as `data/raw/test_data/<DATASET>.txt` (format below). Contraction reads that directory by default; set `GT_DATA_DIR=/path/to/your/graphs` to point it anywhere else (files inside are `<DATASET>.txt`).
-- **MODE**: `gt` (enable GT without counting edge queries) / `gtwithcount` (enable GT and record edge queries). MODE is a compile-time macro; the run scripts rebuild the binary on every invocation, so switching MODE between runs is safe.
-- **Repetitions**: the two query algorithms default to 5 repetitions (the reported time is the average); pass a number to override, e.g. `./run_subac.sh 3` or `./run_cdac.sh coloring gtwithcount 3`. Counters are reset at the start of every run, so their values are identical across runs. Contraction, GT encoding and triangle counting are single-run.
+- **Repetitions**: the three downstream algorithms default to 5 repetitions, time averaged (pass a number to override): `./run_subac.sh 3`, `./run_cdac.sh coloring gtwithcount 3`, `./run_tricount.sh 3`.
 - **k values (cdac)**: a few steps around the maximum clique of the original graph, centered on ω and ω+1; the step grows with the clique size. Extending leftward, the sequence adjusts automatically when it reaches the max *contracted* clique size (the largest clique contraction finds, usually smaller than ω).
 
 The six query graphs (subac) are hardcoded in `subac/subac.cpp`; the per-dataset k sequences (cdac) live in `cdac/run_cdac.sh`. See those files for the exact structures.

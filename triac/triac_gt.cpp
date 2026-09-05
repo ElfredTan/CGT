@@ -151,7 +151,8 @@ int main(int argc, char** argv) {
     size_t gt_memory_footprint = gtCode.size() * sizeof(BitCode);
 
     // Precondition: neighbors in each external_adj row sorted ascending (guaranteed at generation), giving A < B < C enumeration
-    int k=1;
+    // repetitions for timing (default 5); the count itself is deterministic
+    int k = (argc >= 3) ? atoi(argv[2]) : 5;
     std::chrono::duration<double> duration{0};
     for (int i = 0; i < k; i++) { 
             resetTriStats();
