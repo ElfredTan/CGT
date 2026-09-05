@@ -1,0 +1,27 @@
+# Binaries
+subac/subac
+cdac/cdac
+triac/trioffline
+triac/triac_gt
+contract/gcon
+gt_encode/gt_encoder
+test/verify_global_degree
+test/verify_internal_adj
+test/bench_path_query
+
+# Run artifacts
+logs_*/
+data/output_*/
+data/gtbin/
+*.log
+*.tsv
+*.o
+
+# Local-only docs and data (not part of the public artifact)
+docs/
+test/
+data/raw/
+
+# Editors
+.idea/
+.vscode/
